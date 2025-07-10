@@ -13,6 +13,7 @@ const Login = () => {
     const [email, setEmailId] = useState("kavitamalewar@gmail.com");
     const [password, setPassword] = useState("KavitaMalewar@*070401");
     const dispatch = useDispatch();
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
@@ -30,6 +31,8 @@ const Login = () => {
 
       
       } catch (err) {
+        setError(err.response.data || "Login failed. Please try again.");
+
         console.error("Error during login:", err);
         alert("Login failed. Please check your credentials.");
       }
@@ -55,7 +58,7 @@ const Login = () => {
   <p className="label">Required</p>
 </fieldset>
     </div>
-    
+    <p className="text-red-900">{error}</p>
     <div className="card-actions justify-center">
       <button className="btn" onClick={handleLogin}>Login</button>
     </div>
